@@ -1,11 +1,11 @@
 language: python
 
 python:
-    - 3.6
-    - 3.5
+    - "3.7-dev"
 
 install:
-    - echo ""
+    - pip install pipenv==2018.10.13
+    - pipenv install --dev
 
 script:
-    - python -m unittest
+    - pipenv run pytest tests
