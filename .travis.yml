@@ -4,5 +4,8 @@ python:
     - 3.6
     - 3.5
 
-scripts:
+install:
+    - echo ""
+
+script:
     - python -m unittest
