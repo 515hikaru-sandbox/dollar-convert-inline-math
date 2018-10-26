@@ -7,6 +7,23 @@
 * [pypa/pipenv: Python Development Workflow for Humans\.](https://github.com/pypa/pipenv)
 * [pallets/click: Python composable command line interface toolkit](https://github.com/pallets/click)
 
+# Example
+
+```
+$ cat foo.md
+# foo
+
+$a = b$, $a+b$, $\sin x + b$
+$ do2im foo.md
+# foo
+
+\\(a = b\\), \\(a+b\\), \\(\sin x + b\\)
+$ do2im foo.md -o output.md
+$ cat output.md
+# foo
+
+\\(a = b\\), \\(a+b\\), \\(\sin x + b\\)
+```
 # LICENSE
 
 MIT
