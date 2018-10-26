@@ -14,11 +14,11 @@ $ cat foo.md
 # foo
 
 $a = b$, $a+b$, $\sin x + b$
-$ do2im foo.md
+$ do2im foo.md  # 出力ファイルを指定しない場合は標準出力される
 # foo
 
 \\(a = b\\), \\(a+b\\), \\(\sin x + b\\)
-$ do2im foo.md -o output.md
+$ do2im foo.md -o output.md  # -o オプションでファイル出力
 $ cat output.md
 # foo
 
