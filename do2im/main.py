@@ -4,6 +4,8 @@ Convert $ to \\( or \\)
 `\( \)` is MathJax default in-line math mode delimiter.
 """
 
+import click
+
 def count_dollar(sentence):
     """
     count $
@@ -23,13 +25,21 @@ def replace_dollar(sentence, even=False):
     return sentence.replace('$', '\\\\(', 1)
 
 
-def main():
-    s = 'this is example sentence. $a$ is a number. but b is not number. $a + b$ is expression.'
-    d = count_dollar(s)
+def process_line(line):
+    """
+    行の $ をすべて置換したあらたな文字列を返す
+    """
+    d = count_dollar(line)
     for i in range(d):
         even = ((i+1) % 2 == 0)
-        s = replace_dollar(s, even=even)
-    print(s)
+        line = replace_dollar(line, even=even)
+    return line
 
-if __name__ == '__main__':
-    main()
+@click.command()
+@click.argument('filename')
+def process_file(filename):
+    with open(filename, 'r') as mdfile:
+        lines = mdfile.readlines()
+    new_lines = [process_line(line) for line in lines]
+    new_sentence = ''.join(new_lines)
+    click.echo(new_sentence)
