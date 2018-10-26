@@ -37,9 +37,14 @@ def process_line(line):
 
 @click.command()
 @click.argument('filename')
-def process_file(filename):
+@click.option('--out', '-o', default=None)
+def process_file(filename, out):
     with open(filename, 'r') as mdfile:
         lines = mdfile.readlines()
     new_lines = [process_line(line) for line in lines]
     new_sentence = ''.join(new_lines)
-    click.echo(new_sentence)
+    if out is None:
+        click.echo(new_sentence)
+    else:
+        with open(out, 'w') as outfile:
+            outfile.writelines(new_sentence)
