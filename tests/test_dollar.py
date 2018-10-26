@@ -76,6 +76,20 @@ class TestReplaceDollar(unittest.TestCase):
         result_one = do2im.replace_dollar(s, even=False)
         expected_one = '\\\\(a$'
         self.assertEqual(result_one, expected_one)
-        result_two = do2im.replace_dollar(result_one, even=False)
+        result_two = do2im.replace_dollar(result_one, even=True)
         expected_two = '\\\\(a\\\\)'
-        self.assertEqual(result_one, expected_one)
+        self.assertEqual(result_two, expected_two)
+
+class TestProcessLine(unittest.TestCase):
+    """
+    process_line のテスト
+    """
+
+    def test_one_line(self):
+        """
+        1行の変換のテスト
+        """
+        line = '$a = b$, $a+b$, $\sin x + b$'
+        result = do2im.process_line(line)
+        expected = '\\\\(a = b\\\\), \\\\(a+b\\\\), \\\\(\sin x + b\\\\)'
+        self.assertEqual(result, expected)

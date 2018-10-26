@@ -6,7 +6,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     entry_points={
         'console_scripts':[
-            'do2im = do2im.main:main',
+            'do2im = do2im.main:process_file',
         ],
     },
 )
